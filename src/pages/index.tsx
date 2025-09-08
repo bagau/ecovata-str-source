@@ -219,7 +219,7 @@ const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
 
               <h3 style={{ marginTop: 0, marginBottom: "1rem" }}>
                 <Link
-                  to={`/blog${post.fields.slug}`}
+                  to={post.fields.slug}
                   style={{ textDecoration: "none", color: "#2c3e50" }}
                 >
                   {post.frontmatter.title}
@@ -247,17 +247,53 @@ const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
                   {new Date(post.frontmatter.date).toLocaleDateString("ru-RU")}
                 </div>
                 {post.frontmatter.category === "nashi_raboty" && (
-                  <span
-                    style={{
-                      backgroundColor: "#3498db",
-                      color: "white",
-                      padding: "0.2rem 0.5rem",
-                      borderRadius: "3px",
-                      fontSize: "0.8rem",
-                    }}
+                  <Link
+                    to="/cat/nashi_raboty/"
+                    style={{ textDecoration: "none" }}
                   >
-                    Наша работа
-                  </span>
+                    <span
+                      style={{
+                        backgroundColor: "#3498db",
+                        color: "white",
+                        padding: "0.2rem 0.5rem",
+                        borderRadius: "3px",
+                        fontSize: "0.8rem",
+                        cursor: "pointer",
+                        transition: "background-color 0.2s",
+                      }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.backgroundColor = "#2980b9";
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.backgroundColor = "#3498db";
+                      }}
+                    >
+                      Наша работа
+                    </span>
+                  </Link>
+                )}
+                {post.frontmatter.category === "stati" && (
+                  <Link to="/cat/stati/" style={{ textDecoration: "none" }}>
+                    <span
+                      style={{
+                        backgroundColor: "#27ae60",
+                        color: "white",
+                        padding: "0.2rem 0.5rem",
+                        borderRadius: "3px",
+                        fontSize: "0.8rem",
+                        cursor: "pointer",
+                        transition: "background-color 0.2s",
+                      }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.backgroundColor = "#229954";
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.backgroundColor = "#27ae60";
+                      }}
+                    >
+                      Статья
+                    </span>
+                  </Link>
                 )}
               </div>
             </article>
@@ -266,7 +302,7 @@ const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
 
         <div style={{ textAlign: "center", marginTop: "2rem" }}>
           <Link
-            to="/blog"
+            to="/vse_stati/"
             style={{
               display: "inline-block",
               padding: "0.75rem 2rem",
