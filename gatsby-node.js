@@ -212,7 +212,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     if (!categoryResult.errors) {
       // Определяем название категории для URL и отображения
       const categoryNames = {
-        nashi_raboty: { url: "nashi-raboty", title: "Наши работы" },
+        nashi_raboty: { url: "nashi_raboty", title: "Наши работы" },
         stati: { url: "stati", title: "Статьи" },
       };
 

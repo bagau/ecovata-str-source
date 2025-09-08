@@ -78,7 +78,12 @@ const BlogPostMDX: React.FC<BlogPostMDXProps> = ({ data, children }) => {
               <span
                 style={{
                   display: "inline-block",
-                  backgroundColor: "#3498db",
+                  backgroundColor:
+                    frontmatter.category === "nashi_raboty"
+                      ? "#3498db"
+                      : frontmatter.category === "stati"
+                      ? "#27ae60"
+                      : "#95a5a6",
                   color: "white",
                   padding: "0.25rem 0.5rem",
                   borderRadius: "3px",
@@ -87,6 +92,8 @@ const BlogPostMDX: React.FC<BlogPostMDXProps> = ({ data, children }) => {
               >
                 {frontmatter.category === "nashi_raboty"
                   ? "Наши работы"
+                  : frontmatter.category === "stati"
+                  ? "Статьи"
                   : frontmatter.category}
               </span>
             )}

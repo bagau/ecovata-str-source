@@ -45,7 +45,7 @@ const Layout: React.FC<LayoutProps> = ({ children, title }) => {
               Статьи
             </Link>
             <Link
-              to="/cat/nashi-raboty/"
+              to="/cat/nashi_raboty/"
               style={{ textDecoration: "none", color: "#666" }}
             >
               Наши работы
