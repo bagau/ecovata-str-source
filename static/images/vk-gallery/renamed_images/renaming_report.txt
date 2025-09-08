@@ -1,0 +1,170 @@
+VK Gallery Images Renaming Report
+========================================
+Generated: 9/7/2025, 8:00:56 PM
+Total files: 33
+
+File Mapping:
+01.jpg → vk_-74267890_456239146.jpg
+  VK ID: -74267890_456239146
+  Download Index: 1
+  Page: https://vk.com/photo-74267890_456239146
+
+02.jpg → vk_-74267890_456239147.jpg
+  VK ID: -74267890_456239147
+  Download Index: 2
+  Page: https://vk.com/photo-74267890_456239147
+
+03.jpg → vk_-74267890_456239148.jpg
+  VK ID: -74267890_456239148
+  Download Index: 3
+  Page: https://vk.com/photo-74267890_456239148
+
+04.jpg → vk_-74267890_456239149.jpg
+  VK ID: -74267890_456239149
+  Download Index: 4
+  Page: https://vk.com/photo-74267890_456239149
+
+05.jpg → vk_-74267890_456239150.jpg
+  VK ID: -74267890_456239150
+  Download Index: 5
+  Page: https://vk.com/photo-74267890_456239150
+
+06.jpg → vk_-74267890_456239151.jpg
+  VK ID: -74267890_456239151
+  Download Index: 6
+  Page: https://vk.com/photo-74267890_456239151
+
+07.jpg → vk_-74267890_456239152.jpg
+  VK ID: -74267890_456239152
+  Download Index: 7
+  Page: https://vk.com/photo-74267890_456239152
+
+08.jpg → vk_-74267890_456239153.jpg
+  VK ID: -74267890_456239153
+  Download Index: 8
+  Page: https://vk.com/photo-74267890_456239153
+
+09.jpg → vk_-74267890_456239154.jpg
+  VK ID: -74267890_456239154
+  Download Index: 9
+  Page: https://vk.com/photo-74267890_456239154
+
+10.jpg → vk_-74267890_456239155.jpg
+  VK ID: -74267890_456239155
+  Download Index: 10
+  Page: https://vk.com/photo-74267890_456239155
+
+11.jpg → vk_-74267890_456239156.jpg
+  VK ID: -74267890_456239156
+  Download Index: 11
+  Page: https://vk.com/photo-74267890_456239156
+
+12.jpg → vk_-74267890_456239157.jpg
+  VK ID: -74267890_456239157
+  Download Index: 12
+  Page: https://vk.com/photo-74267890_456239157
+
+13.jpg → vk_-74267890_456239158.jpg
+  VK ID: -74267890_456239158
+  Download Index: 13
+  Page: https://vk.com/photo-74267890_456239158
+
+14.jpg → vk_-74267890_456239159.jpg
+  VK ID: -74267890_456239159
+  Download Index: 14
+  Page: https://vk.com/photo-74267890_456239159
+
+15.jpg → vk_-74267890_456239160.jpg
+  VK ID: -74267890_456239160
+  Download Index: 15
+  Page: https://vk.com/photo-74267890_456239160
+
+16.jpg → vk_-74267890_456239161.jpg
+  VK ID: -74267890_456239161
+  Download Index: 16
+  Page: https://vk.com/photo-74267890_456239161
+
+17.jpg → vk_-74267890_456239162.jpg
+  VK ID: -74267890_456239162
+  Download Index: 17
+  Page: https://vk.com/photo-74267890_456239162
+
+18.jpg → vk_-74267890_456239163.jpg
+  VK ID: -74267890_456239163
+  Download Index: 18
+  Page: https://vk.com/photo-74267890_456239163
+
+19.jpg → vk_-74267890_456239164.jpg
+  VK ID: -74267890_456239164
+  Download Index: 19
+  Page: https://vk.com/photo-74267890_456239164
+
+20.jpg → vk_-74267890_456239165.jpg
+  VK ID: -74267890_456239165
+  Download Index: 20
+  Page: https://vk.com/photo-74267890_456239165
+
+21.jpg → vk_-74267890_456239166.jpg
+  VK ID: -74267890_456239166
+  Download Index: 21
+  Page: https://vk.com/photo-74267890_456239166
+
+22.jpg → vk_-74267890_456239167.jpg
+  VK ID: -74267890_456239167
+  Download Index: 22
+  Page: https://vk.com/photo-74267890_456239167
+
+23.jpg → vk_-74267890_456239168.jpg
+  VK ID: -74267890_456239168
+  Download Index: 23
+  Page: https://vk.com/photo-74267890_456239168
+
+24.jpg → vk_-74267890_456239169.jpg
+  VK ID: -74267890_456239169
+  Download Index: 24
+  Page: https://vk.com/photo-74267890_456239169
+
+25.jpg → vk_-74267890_456239170.jpg
+  VK ID: -74267890_456239170
+  Download Index: 25
+  Page: https://vk.com/photo-74267890_456239170
+
+26.jpg → vk_-74267890_456239171.jpg
+  VK ID: -74267890_456239171
+  Download Index: 26
+  Page: https://vk.com/photo-74267890_456239171
+
+27.jpg → vk_-74267890_456239172.jpg
+  VK ID: -74267890_456239172
+  Download Index: 27
+  Page: https://vk.com/photo-74267890_456239172
+
+28.jpg → vk_-74267890_456239173.jpg
+  VK ID: -74267890_456239173
+  Download Index: 28
+  Page: https://vk.com/photo-74267890_456239173
+
+29.jpg → vk_-74267890_456239174.jpg
+  VK ID: -74267890_456239174
+  Download Index: 29
+  Page: https://vk.com/photo-74267890_456239174
+
+30.jpg → vk_-74267890_456239175.jpg
+  VK ID: -74267890_456239175
+  Download Index: 30
+  Page: https://vk.com/photo-74267890_456239175
+
+31.jpg → vk_-74267890_456239176.jpg
+  VK ID: -74267890_456239176
+  Download Index: 31
+  Page: https://vk.com/photo-74267890_456239176
+
+32.jpg → vk_-74267890_456239177.jpg
+  VK ID: -74267890_456239177
+  Download Index: 32
+  Page: https://vk.com/photo-74267890_456239177
+
+33.jpg → vk_-74267890_456239178.jpg
+  VK ID: -74267890_456239178
+  Download Index: 33
+  Page: https://vk.com/photo-74267890_456239178
