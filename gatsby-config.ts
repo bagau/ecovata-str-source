@@ -23,6 +23,14 @@ const config: GatsbyConfig = {
         path: `${__dirname}/src/pages`,
       },
     },
+    // Контент страницы (contacts, otzivi, tceny и т.д.)
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `content`,
+        path: `${__dirname}/src/content`,
+      },
+    },
     // MDX support
     {
       resolve: `gatsby-plugin-mdx`,

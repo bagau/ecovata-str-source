@@ -109,6 +109,24 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
         node.frontmatter.template === "all-articles-page"
       ) {
         component = path.resolve("./src/templates/all-articles-page.tsx");
+      } else if (node.frontmatter && node.frontmatter.template === "page") {
+        // Для одиночных страниц (например, контакты)
+        component = path.resolve("./src/templates/page-mdx.tsx");
+      } else {
+        // Все остальные MDX файлы используют MDX шаблон
+        component = path.resolve("./src/templates/blog-post-mdx.tsx");
+      }
+      path_prefix = "";
+    } else if (collection === "content") {
+      // Для контент-страниц из src/content/
+      if (
+        node.frontmatter &&
+        node.frontmatter.template === "all-articles-page"
+      ) {
+        component = path.resolve("./src/templates/all-articles-page.tsx");
+      } else if (node.frontmatter && node.frontmatter.template === "page") {
+        // Для одиночных страниц (например, контакты)
+        component = path.resolve("./src/templates/page-mdx.tsx");
       } else {
         // Все остальные MDX файлы используют MDX шаблон
         component = path.resolve("./src/templates/blog-post-mdx.tsx");

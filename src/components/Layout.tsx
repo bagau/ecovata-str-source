@@ -34,9 +34,21 @@ const Layout: React.FC<LayoutProps> = ({ children, title }) => {
           >
             Эковата-Стр
           </Link>
-          <div style={{ display: "flex", gap: "2rem" }}>
+          <div style={{ display: "flex", gap: "1.5rem" }}>
             <Link to="/" style={{ textDecoration: "none", color: "#666" }}>
               Главная
+            </Link>
+            <Link
+              to="/kak_my_rabotaem/"
+              style={{ textDecoration: "none", color: "#666" }}
+            >
+              Как мы работаем
+            </Link>
+            <Link
+              to="/tceny/"
+              style={{ textDecoration: "none", color: "#666" }}
+            >
+              Цены
             </Link>
             <Link
               to="/cat/stati/"
@@ -51,7 +63,13 @@ const Layout: React.FC<LayoutProps> = ({ children, title }) => {
               Наши работы
             </Link>
             <Link
-              to="/contacts"
+              to="/otzivi/"
+              style={{ textDecoration: "none", color: "#666" }}
+            >
+              Отзывы
+            </Link>
+            <Link
+              to="/contacts/"
               style={{ textDecoration: "none", color: "#666" }}
             >
               Контакты
