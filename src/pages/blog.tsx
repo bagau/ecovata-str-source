@@ -5,7 +5,7 @@ import Layout from "../components/Layout";
 
 interface BlogPageProps extends PageProps {
   data: {
-    allMarkdownRemark: {
+    allMdx: {
       nodes: Array<{
         id: string;
         frontmatter: {
@@ -28,7 +28,7 @@ interface BlogPageProps extends PageProps {
 }
 
 const BlogPage: React.FC<BlogPageProps> = ({ data }) => {
-  const { allMarkdownRemark } = data;
+  const { allMdx } = data;
 
   return (
     <Layout title="Все статьи и работы">
@@ -39,7 +39,7 @@ const BlogPage: React.FC<BlogPageProps> = ({ data }) => {
           gap: "2rem",
         }}
       >
-        {allMarkdownRemark.nodes.map((post) => (
+        {allMdx.nodes.map((post) => (
           <article
             key={post.id}
             style={{
@@ -171,8 +171,8 @@ export const Head: HeadFC = () => (
 
 export const query = graphql`
   query {
-    allMarkdownRemark(
-      filter: { fields: { collection: { eq: "blog" } } }
+    allMdx(
+      filter: { fields: { collection: { eq: "pages" } } }
       sort: { frontmatter: { date: DESC } }
     ) {
       nodes {

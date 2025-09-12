@@ -7,7 +7,7 @@ const config: GatsbyConfig = {
   },
   graphqlTypegen: true,
   plugins: [
-    // Markdown файлы как источник данных
+    // Статические файлы (изображения)
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -15,20 +15,12 @@ const config: GatsbyConfig = {
         path: `${__dirname}/src/images`,
       },
     },
-    // Трансформация Markdown в HTML
+    // MDX страницы
     {
-      resolve: `gatsby-transformer-remark`,
+      resolve: `gatsby-source-filesystem`,
       options: {
-        plugins: [
-          {
-            resolve: `gatsby-remark-images`,
-            options: {
-              maxWidth: 800,
-              quality: 90,
-              linkImagesToOriginal: false,
-            },
-          },
-        ],
+        name: `pages`,
+        path: `${__dirname}/src/pages`,
       },
     },
     // MDX support
@@ -36,6 +28,10 @@ const config: GatsbyConfig = {
       resolve: `gatsby-plugin-mdx`,
       options: {
         extensions: [`.mdx`],
+        mdxOptions: {
+          remarkPlugins: [],
+          rehypePlugins: [],
+        },
         gatsbyRemarkPlugins: [
           {
             resolve: `gatsby-remark-images`,

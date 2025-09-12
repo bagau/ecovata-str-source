@@ -5,7 +5,7 @@ exports.createSchemaCustomization = ({ actions }) => {
   const { createTypes } = actions;
 
   const typeDefs = `
-    type MarkdownRemarkFrontmatter {
+    type MdxFrontmatter {
       title: String!
       date: Date @dateformat
       slug: String
@@ -18,28 +18,9 @@ exports.createSchemaCustomization = ({ actions }) => {
       template: String
     }
 
-    type MdxFrontmatter {
-      title: String!
-      date: Date @dateformat
-      slug: String
-      category: String
-      tags: [String]
-      excerpt: String
-      featured: Boolean
-    }
-
-    type MarkdownRemarkFields {
-      slug: String
-      collection: String
-    }
-
     type MdxFields {
       slug: String
       collection: String
-    }
-
-    type MarkdownRemark implements Node {
-      fields: MarkdownRemarkFields
     }
 
     type Mdx implements Node {
@@ -54,7 +35,7 @@ exports.createSchemaCustomization = ({ actions }) => {
 exports.onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions;
 
-  if (node.internal.type === `MarkdownRemark` || node.internal.type === `Mdx`) {
+  if (node.internal.type === `Mdx`) {
     const fileNode = getNode(node.parent);
     const parsedFilePath = path.parse(fileNode.relativePath);
 
@@ -87,10 +68,10 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
 exports.createPages = async ({ graphql, actions, reporter }) => {
   const { createPage } = actions;
 
-  // Query for Markdown and MDX files
+  // Query for MDX files only
   const result = await graphql(`
     query {
-      allMarkdownRemark {
+      allMdx {
         nodes {
           id
           fields {
@@ -103,18 +84,6 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
           }
         }
       }
-      allMdx {
-        nodes {
-          id
-          fields {
-            slug
-            collection
-          }
-          frontmatter {
-            category
-          }
-        }
-      }
     }
   `);
 
@@ -123,9 +92,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     return;
   }
 
-  const markdownNodes = result.data.allMarkdownRemark.nodes;
-  const mdxNodes = result.data.allMdx.nodes;
-  const allNodes = [...markdownNodes, ...mdxNodes];
+  const allNodes = result.data.allMdx.nodes;
 
   // Создаем страницы для каждого файла
   allNodes.forEach((node) => {
@@ -135,15 +102,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     let component;
     let path_prefix = "";
 
-    if (collection === "blog") {
-      // Используем разные шаблоны для Markdown и MDX
-      if (markdownNodes.includes(node)) {
-        component = path.resolve("./src/templates/blog-post.tsx");
-      } else {
-        component = path.resolve("./src/templates/blog-post-mdx.tsx");
-      }
-      path_prefix = ""; // Убираем префикс /blog/
-    } else if (collection === "pages") {
+    if (collection === "pages") {
       // Проверяем, нужен ли специальный шаблон
       if (
         node.frontmatter &&
@@ -151,7 +110,8 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
       ) {
         component = path.resolve("./src/templates/all-articles-page.tsx");
       } else {
-        component = path.resolve("./src/templates/blog-post.tsx");
+        // Все остальные MDX файлы используют MDX шаблон
+        component = path.resolve("./src/templates/blog-post-mdx.tsx");
       }
       path_prefix = "";
     }
@@ -183,9 +143,9 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     const categoryResult = await graphql(
       `
         query ($category: String!) {
-          allMarkdownRemark(
+          allMdx(
             filter: {
-              fields: { collection: { eq: "blog" } }
+              fields: { collection: { eq: "pages" } }
               frontmatter: { category: { eq: $category } }
             }
             sort: { frontmatter: { date: DESC } }
@@ -227,7 +187,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
         context: {
           category: category,
           categoryTitle: categoryInfo.title,
-          posts: categoryResult.data.allMarkdownRemark.nodes,
+          posts: categoryResult.data.allMdx.nodes,
         },
       });
     }

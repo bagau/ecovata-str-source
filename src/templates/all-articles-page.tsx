@@ -6,14 +6,14 @@ import "../styles/works.css";
 
 interface AllArticlesPageProps extends PageProps {
   data: {
-    markdownRemark: {
-      html: string;
+    mdx: {
+      body: string;
       frontmatter: {
         title: string;
         date?: string;
       };
     };
-    allMarkdownRemark: {
+    allMdx: {
       nodes: Array<{
         id: string;
         frontmatter: {
@@ -31,18 +31,18 @@ interface AllArticlesPageProps extends PageProps {
 }
 
 const AllArticlesPage: React.FC<AllArticlesPageProps> = ({ data }) => {
-  const { markdownRemark, allMarkdownRemark } = data;
-  const { frontmatter, html } = markdownRemark;
+  const { mdx, allMdx } = data;
+  const { frontmatter, body } = mdx;
 
   // Группируем статьи по категориям
-  const categorizedPosts = allMarkdownRemark.nodes.reduce((acc, post) => {
+  const categorizedPosts = allMdx.nodes.reduce((acc, post) => {
     const category = post.frontmatter.category || "other";
     if (!acc[category]) {
       acc[category] = [];
     }
     acc[category].push(post);
     return acc;
-  }, {} as Record<string, typeof allMarkdownRemark.nodes>);
+  }, {} as Record<string, typeof allMdx.nodes>);
 
   const categoryNames = {
     nashi_raboty: "Наши работы",
@@ -60,7 +60,7 @@ const AllArticlesPage: React.FC<AllArticlesPageProps> = ({ data }) => {
         {/* Контент страницы */}
         <div
           style={{ marginBottom: "3rem" }}
-          dangerouslySetInnerHTML={{ __html: html }}
+          dangerouslySetInnerHTML={{ __html: body }}
         />
 
         {/* Статьи по категориям - простые списки */}
@@ -163,9 +163,7 @@ const AllArticlesPage: React.FC<AllArticlesPageProps> = ({ data }) => {
             }}
           >
             Всего материалов на сайте:{" "}
-            <strong style={{ color: "#27ae60" }}>
-              {allMarkdownRemark.nodes.length}
-            </strong>
+            <strong style={{ color: "#27ae60" }}>{allMdx.nodes.length}</strong>
           </p>
         </section>
       </div>
@@ -177,7 +175,7 @@ export default AllArticlesPage;
 
 export const Head: HeadFC<AllArticlesPageProps["data"]> = ({ data }) => (
   <>
-    <title>{data.markdownRemark.frontmatter.title} — Эковата-Стр</title>
+    <title>{data.mdx.frontmatter.title} — Эковата-Стр</title>
     <meta
       name="description"
       content="Полный каталог всех статей и материалов по утеплению эковатой. Наши работы, теоретические статьи и практические советы."
@@ -187,15 +185,15 @@ export const Head: HeadFC<AllArticlesPageProps["data"]> = ({ data }) => (
 
 export const query = graphql`
   query AllArticlesPageQuery($id: String!) {
-    markdownRemark(id: { eq: $id }) {
-      html
+    mdx(id: { eq: $id }) {
+      body
       frontmatter {
         title
         date
       }
     }
-    allMarkdownRemark(
-      filter: { fields: { collection: { eq: "blog" } } }
+    allMdx(
+      filter: { fields: { collection: { eq: "pages" } } }
       sort: { frontmatter: { date: DESC } }
     ) {
       nodes {

@@ -3,9 +3,9 @@ import type { HeadFC, PageProps } from "gatsby";
 import { graphql, Link } from "gatsby";
 import Layout from "../components/Layout";
 
-interface IndexPageProps extends PageProps {
+interface IndexMarkdownPageProps extends PageProps {
   data: {
-    allMarkdownRemark: {
+    allMdx: {
       nodes: Array<{
         id: string;
         frontmatter: {
@@ -25,8 +25,8 @@ interface IndexPageProps extends PageProps {
   };
 }
 
-const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
-  const { allMarkdownRemark } = data;
+const IndexPage: React.FC<IndexMarkdownPageProps> = ({ data }) => {
+  const { allMdx } = data;
 
   return (
     <Layout>
@@ -124,7 +124,7 @@ const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
             gap: "2rem",
           }}
         >
-          {allMarkdownRemark.nodes.slice(0, 6).map((post) => (
+          {allMdx.nodes.slice(0, 6).map((post) => (
             <article
               key={post.id}
               style={{
@@ -254,8 +254,8 @@ export const Head: HeadFC = () => (
 
 export const query = graphql`
   query {
-    allMarkdownRemark(
-      filter: { fields: { collection: { eq: "blog" } } }
+    allMdx(
+      filter: { fields: { collection: { eq: "pages" } } }
       sort: { frontmatter: { date: DESC } }
       limit: 6
     ) {

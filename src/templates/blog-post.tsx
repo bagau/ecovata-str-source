@@ -1,12 +1,12 @@
 import React from "react";
-import { graphql, Link } from "gatsby";
+import { Link } from "gatsby";
 import type { HeadFC, PageProps } from "gatsby";
 import Layout from "../components/Layout";
 
 interface BlogPostProps extends PageProps {
   data: {
-    markdownRemark: {
-      html: string;
+    mdx: {
+      body: string;
       frontmatter: {
         title: string;
         date: string;
@@ -25,8 +25,8 @@ interface BlogPostProps extends PageProps {
 }
 
 const BlogPost: React.FC<BlogPostProps> = ({ data }) => {
-  const { markdownRemark } = data;
-  const { frontmatter, html, fields } = markdownRemark;
+  const { mdx } = data;
+  const { frontmatter, body, fields } = mdx;
 
   return (
     <Layout>
@@ -142,7 +142,7 @@ const BlogPost: React.FC<BlogPostProps> = ({ data }) => {
         {/* Post Content */}
         <div
           className="blog-post-content"
-          dangerouslySetInnerHTML={{ __html: html }}
+          dangerouslySetInnerHTML={{ __html: body }}
         />
 
         {/* Post Footer */}
@@ -178,34 +178,14 @@ export default BlogPost;
 
 export const Head: HeadFC<BlogPostProps["data"]> = ({ data }) => (
   <>
-    <title>{data.markdownRemark.frontmatter.title} — Эковата-Стр</title>
+    <title>{data.mdx.frontmatter.title} — Эковата-Стр</title>
     <meta
       name="description"
       content={`${
-        data.markdownRemark.frontmatter.excerpt ||
-        data.markdownRemark.frontmatter.title
+        data.mdx.frontmatter.excerpt || data.mdx.frontmatter.title
       }. Работы по утеплению эковатой в Башкортостане.`}
     />
   </>
 );
 
-export const query = graphql`
-  query ($id: String!) {
-    markdownRemark(id: { eq: $id }) {
-      html
-      frontmatter {
-        title
-        date
-        slug
-        category
-        tags
-        excerpt
-        featuredImage
-        featuredImageAlt
-      }
-      fields {
-        slug
-      }
-    }
-  }
-`;
+// GraphQL запрос удален - используется только в blog-post-mdx.tsx

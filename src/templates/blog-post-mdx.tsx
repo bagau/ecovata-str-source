@@ -2,10 +2,13 @@ import React from "react";
 import { graphql, Link } from "gatsby";
 import type { HeadFC } from "gatsby";
 import Layout from "../components/Layout";
+import { MDXProvider } from "@mdx-js/react";
+import LocalGallery from "../components/LocalGallery";
 
 interface BlogPostMDXProps {
   data: {
     mdx: {
+      body: string;
       frontmatter: {
         title: string;
         date: string;
@@ -22,9 +25,92 @@ interface BlogPostMDXProps {
   children: React.ReactNode;
 }
 
+const components = {
+  LocalGallery,
+};
+
 const BlogPostMDX: React.FC<BlogPostMDXProps> = ({ data, children }) => {
   const { mdx } = data;
   const { frontmatter, fields } = mdx;
+
+  console.log("=== MDX RENDER DEBUG ===", {
+    hasChildren: !!children,
+    childrenType: typeof children,
+    isValidElement: React.isValidElement(children),
+    hasBody: !!mdx.body,
+    bodyLength: mdx.body?.length || 0,
+    bodyPreview: mdx.body?.substring(0, 200) + "...",
+  });
+
+  // Обработка MDX контента с поддержкой JSX
+  const renderBodyAsText = () => {
+    let processedBody = mdx.body;
+
+    // Удаляем импорты (они уже доступны через components)
+    processedBody = processedBody.replace(/import.*from.*["\'];?\n?/g, "");
+
+    // Обрабатываем LocalGallery компоненты
+    processedBody = processedBody.replace(
+      /<LocalGallery\s+([^>]*)\s*\/?>(?:<\/LocalGallery>)?/g,
+      (match, attrs) => {
+        // Извлекаем атрибуты
+        const imageMatch = attrs.match(/images=\{?\[([^\]]+)\]\}?/);
+        if (imageMatch) {
+          const images = imageMatch[1]
+            .split(",")
+            .map((img: string) => img.trim().replace(/['"]/g, ""));
+          // Создаем простую галерею
+          return `<div style="margin: 1rem 0;">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+              ${images
+                .map(
+                  (img: string) =>
+                    `<img src="${img}" style="width: 100%; border-radius: 4px;" alt="Фото" />`
+                )
+                .join("")}
+            </div>
+          </div>`;
+        }
+        return match;
+      }
+    );
+
+    // Обрабатываем ссылки на ВК фото
+    processedBody = processedBody.replace(
+      /_Фото ВК: \[([^\]]+)\]\([^)]+\)(?:, \[([^\]]+)\]\([^)]+\))*/g,
+      (match) => {
+        return `<div style="font-style: italic; color: #666; margin: 1rem 0;">${match}</div>`;
+      }
+    );
+
+    // Стандартная markdown обработка
+    processedBody = processedBody
+      .replace(/^#\s+(.*)$/gm, "<h1>$1</h1>")
+      .replace(/^##\s+(.*)$/gm, "<h2>$1</h2>")
+      .replace(/^###\s+(.*)$/gm, "<h3>$1</h3>")
+      .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")
+      .replace(/\*(.*?)\*/g, "<em>$1</em>")
+      .replace(
+        /!\[(.*?)\]\(([^)]+)\)/g,
+        '<img alt="$1" src="$2" style="max-width: 100%; height: auto;" />'
+      )
+      .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>')
+      .replace(/^- (.*)$/gm, "<li>$1</li>")
+      .replace(/(<li>.*<\/li>)/gs, "<ul>$1</ul>")
+      .split("\n\n")
+      .map((paragraph) => (paragraph.trim() ? `<p>${paragraph}</p>` : ""))
+      .join("");
+
+    return (
+      <div
+        dangerouslySetInnerHTML={{ __html: processedBody }}
+        style={{
+          lineHeight: 1.6,
+          fontSize: "16px",
+        }}
+      />
+    );
+  };
 
   return (
     <Layout>
@@ -122,7 +208,11 @@ const BlogPostMDX: React.FC<BlogPostMDXProps> = ({ data, children }) => {
         </header>
 
         {/* MDX Content */}
-        <div className="blog-post-content">{children}</div>
+        <div className="blog-post-content">
+          <MDXProvider components={components}>
+            {children || renderBodyAsText()}
+          </MDXProvider>
+        </div>
 
         {/* Post Footer */}
         <footer
@@ -170,6 +260,7 @@ export const Head: HeadFC<BlogPostMDXProps["data"]> = ({ data }) => (
 export const query = graphql`
   query ($id: String!) {
     mdx(id: { eq: $id }) {
+      body
       frontmatter {
         title
         date

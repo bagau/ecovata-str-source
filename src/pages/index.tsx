@@ -5,7 +5,7 @@ import Layout from "../components/Layout";
 
 interface IndexPageProps extends PageProps {
   data: {
-    allMarkdownRemark: {
+    allMdx: {
       nodes: Array<{
         id: string;
         frontmatter: {
@@ -27,8 +27,8 @@ interface IndexPageProps extends PageProps {
 }
 
 const IndexPage: React.FC<IndexPageProps> = ({ data }) => {
-  const { allMarkdownRemark } = data;
-  const recentPosts = allMarkdownRemark.nodes.slice(0, 6);
+  const { allMdx } = data;
+  const recentPosts = allMdx.nodes.slice(0, 6);
 
   return (
     <Layout>
@@ -339,8 +339,8 @@ export const Head: HeadFC<IndexPageProps["data"]> = ({ data }) => (
 
 export const query = graphql`
   query {
-    allMarkdownRemark(
-      filter: { fields: { collection: { eq: "blog" } } }
+    allMdx(
+      filter: { fields: { collection: { eq: "pages" } } }
       sort: { frontmatter: { date: DESC } }
       limit: 10
     ) {
