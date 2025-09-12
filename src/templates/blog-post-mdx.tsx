@@ -34,15 +34,6 @@ const BlogPostMDX: React.FC<BlogPostMDXProps> = ({ data, children }) => {
   const { mdx } = data;
   const { frontmatter, fields } = mdx;
 
-  console.log("=== MDX RENDER DEBUG ===", {
-    hasChildren: !!children,
-    childrenType: typeof children,
-    isValidElement: React.isValidElement(children),
-    hasBody: !!mdx.body,
-    bodyLength: mdx.body?.length || 0,
-    bodyPreview: mdx.body?.substring(0, 200) + "...",
-  });
-
   // Обработка MDX контента с поддержкой JSX
   const renderBodyAsText = () => {
     let processedBody = mdx.body;
