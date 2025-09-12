@@ -2,6 +2,8 @@ import React from "react";
 import { graphql, Link } from "gatsby";
 import type { HeadFC, PageProps } from "gatsby";
 import Layout from "../components/Layout";
+import { MDXProvider } from "@mdx-js/react";
+import LocalGallery from "../components/LocalGallery";
 import "../styles/works.css";
 
 interface AllArticlesPageProps extends PageProps {
@@ -33,6 +35,7 @@ interface AllArticlesPageProps extends PageProps {
 const AllArticlesPage: React.FC<AllArticlesPageProps> = ({ data }) => {
   const { mdx, allMdx } = data;
   const { frontmatter, body } = mdx;
+  const components = { LocalGallery };
 
   // Группируем статьи по категориям
   const categorizedPosts = allMdx.nodes.reduce((acc, post) => {
@@ -57,11 +60,12 @@ const AllArticlesPage: React.FC<AllArticlesPageProps> = ({ data }) => {
           {frontmatter.title}
         </h1>
 
-        {/* Контент страницы */}
-        <div
-          style={{ marginBottom: "3rem" }}
-          dangerouslySetInnerHTML={{ __html: body }}
-        />
+        {/* Контент страницы (MDX) */}
+        {body && (
+          <div className="max-w-4xl mx-auto mb-8">
+            <MDXProvider components={components}>{body}</MDXProvider>
+          </div>
+        )}
 
         {/* Статьи по категориям - простые списки */}
         <div>
