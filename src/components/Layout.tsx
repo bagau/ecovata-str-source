@@ -63,12 +63,6 @@ const Layout: React.FC<LayoutProps> = ({ children, title }) => {
               Наши работы
             </Link>
             <Link
-              to="/otzivi/"
-              style={{ textDecoration: "none", color: "#666" }}
-            >
-              Отзывы
-            </Link>
-            <Link
               to="/contacts/"
               style={{ textDecoration: "none", color: "#666" }}
             >
@@ -89,30 +83,6 @@ const Layout: React.FC<LayoutProps> = ({ children, title }) => {
           textAlign: "center",
         }}
       >
-        <div
-          style={{
-            marginBottom: "1rem",
-            padding: "1rem",
-            backgroundColor: "#f8f9fa",
-            borderRadius: "8px",
-          }}
-        >
-          <div
-            style={{
-              marginBottom: "0.5rem",
-              color: "#2c3e50",
-              fontWeight: "bold",
-            }}
-          >
-            Нужно утепление дома эковатой?
-          </div>
-          <div
-            style={{ fontSize: "1.1rem", fontWeight: "bold", color: "#e74c3c" }}
-          >
-            +7 (917) 428-37-07, +7 (962) 526-70-25
-          </div>
-        </div>
-
         <div style={{ fontSize: "0.9rem", color: "#666" }}>
           © 2012-2025. Утепление эковатой в Стерлитамаке и Башкирии. Мы работаем
           для тепла вашего дома!

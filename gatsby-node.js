@@ -110,8 +110,13 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
       ) {
         component = path.resolve("./src/templates/all-articles-page.tsx");
       } else if (node.frontmatter && node.frontmatter.template === "page") {
-        // Для одиночных страниц (например, контакты)
-        component = path.resolve("./src/templates/page-mdx.tsx");
+        // Специальный шаблон для контактов
+        if (slug === "/contacts/") {
+          component = path.resolve("./src/templates/contacts-page.tsx");
+        } else {
+          // Для остальных одиночных страниц (цены, отзывы)
+          component = path.resolve("./src/templates/page-mdx.tsx");
+        }
       } else {
         // Все остальные MDX файлы используют MDX шаблон
         component = path.resolve("./src/templates/blog-post-mdx.tsx");
@@ -125,8 +130,13 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
       ) {
         component = path.resolve("./src/templates/all-articles-page.tsx");
       } else if (node.frontmatter && node.frontmatter.template === "page") {
-        // Для одиночных страниц (например, контакты)
-        component = path.resolve("./src/templates/page-mdx.tsx");
+        // Специальный шаблон для контактов
+        if (slug === "/contacts/") {
+          component = path.resolve("./src/templates/contacts-page.tsx");
+        } else {
+          // Для остальных одиночных страниц (цены, отзывы)
+          component = path.resolve("./src/templates/page-mdx.tsx");
+        }
       } else {
         // Все остальные MDX файлы используют MDX шаблон
         component = path.resolve("./src/templates/blog-post-mdx.tsx");

@@ -4,6 +4,7 @@ import type { HeadFC } from "gatsby";
 import Layout from "../components/Layout";
 import { MDXProvider } from "@mdx-js/react";
 import LocalGallery from "../components/LocalGallery";
+import ContactBlock from "../components/ContactBlock";
 
 interface BlogPostMDXProps {
   data: {
@@ -213,6 +214,8 @@ const BlogPostMDX: React.FC<BlogPostMDXProps> = ({ data, children }) => {
             {children || renderBodyAsText()}
           </MDXProvider>
         </div>
+
+        <ContactBlock />
 
         {/* Post Footer */}
         <footer
