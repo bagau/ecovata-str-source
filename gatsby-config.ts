@@ -13,6 +13,9 @@ const config: GatsbyConfig = {
       options: {
         name: `images`,
         path: `${__dirname}/src/images`,
+        defaultLayouts: {
+          default: require.resolve("./src/components/Layout.tsx"),
+        },
       },
     },
     // MDX страницы
@@ -31,15 +34,11 @@ const config: GatsbyConfig = {
         path: `${__dirname}/src/content`,
       },
     },
-    // MDX support
+    // MDX support (gatsby-mdx-fix)
     {
-      resolve: `gatsby-plugin-mdx`,
+      resolve: `gatsby-mdx-fix`,
       options: {
-        extensions: [`.mdx`],
-        mdxOptions: {
-          remarkPlugins: [],
-          rehypePlugins: [],
-        },
+        extensions: [`.mdx`, `.md`],
         gatsbyRemarkPlugins: [
           {
             resolve: `gatsby-remark-images`,
@@ -50,6 +49,11 @@ const config: GatsbyConfig = {
             },
           },
         ],
+        remarkPlugins: [
+          require("remark-frontmatter"),
+          [require("remark-mdx-frontmatter"), { name: "frontmatter" }],
+        ],
+        rehypePlugins: [],
       },
     },
     // Image optimization plugins
