@@ -59,29 +59,6 @@ const config: GatsbyConfig = {
     // SEO plugins
     `gatsby-plugin-sitemap`,
     `gatsby-plugin-robots-txt`,
-
-    // WordPress source plugin (временно оставляем для перехода)
-    // Удалите этот блок после полного перехода на Markdown
-    /*
-    {
-      resolve: `gatsby-source-wordpress`,
-      options: {
-        url: `https://ecovata-str.ru/index.php?graphql`,
-        verbose: true,
-        develop: {
-          hardCacheMediaFiles: true,
-        },
-        production: {
-          hardCacheMediaFiles: false,
-        },
-        schema: {
-          timeout: 120000,
-          perPage: 10,
-          requestConcurrency: 3,
-        },
-      },
-    },
-    */
   ],
 };
 
